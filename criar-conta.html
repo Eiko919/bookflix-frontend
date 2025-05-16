@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sign Up - Bookflix</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="signup-container">
+    <h2>Create Account</h2>
+    <form id="signupForm">
+      <input type="text" name="username" placeholder="Username" required />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="password" name="password" placeholder="Password" required minlength="6" />
+      <input type="password" name="confirmPassword" placeholder="Confirm Password" required minlength="6" />
+      <button type="submit">Sign Up</button>
+    </form>
+    <div class="error" id="errorMsg" aria-live="polite"></div>
+    <div class="login-link">
+      <p>Already have an account? <a href="/login.html">Log In</a></p>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('signupForm');
+    const errorMsg = document.getElementById('errorMsg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorMsg.textContent = '';
+
+      const submitBtn = form.querySelector('button[type="submit"]');
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+      const username = formData.get('username');
+      const email = formData.get('email');
+      const password = formData.get('password');
+      const confirmPassword = formData.get('confirmPassword');
+
+      if (password !== confirmPassword) {
+        errorMsg.textContent = 'Passwords do not match';
+        submitBtn.disabled = false;
+        return;
+      }
+
+      try {
+        const res = await fetch('https://bookflix-jbrq.onrender.com', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ username, email, password })
+        });
+
+        const result = await res.json();
+
+        if (res.ok) {
+          // Redirect to login or home after successful signup
+          window.location.href = result.redirect || 'index.html';
+        } else {
+          errorMsg.textContent = result.error || 'Signup failed';
+        }
+      } catch (err) {
+        errorMsg.textContent = 'Error connecting to server';
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+  </script>
+</body>
+</html>
