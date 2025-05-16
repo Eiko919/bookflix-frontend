@@ -8,18 +8,18 @@
 </head>
 <body>
   <div class="container auth-container">
-    <h2>Sign In</h2>
+    <h2>Entrar no Bookflix</h2>
     <form id="loginForm">
-      <input type="text" name="username" placeholder="Usuário" required />
-      <input type="password" name="password" placeholder="Senha" required />
+      <input type="text" name="username" placeholder="Usuário" required autocomplete="username" />
+      <input type="password" name="password" placeholder="Senha" required autocomplete="current-password" />
       <button type="submit">Entrar</button>
     </form>
 
     <p class="switch-link">
-      Não tem uma conta? Crie agora: <a href="criar-conta.html">Criar conta</a>
+      Não tem uma conta? <a href="criar-conta.html">Crie agora</a>
     </p>
 
-    <div class="error" id="errorMsg" aria-live="polite"></div>
+    <div class="error" id="errorMsg" aria-live="polite" style="color: red; margin-top: 10px;"></div>
   </div>
 
   <script>
@@ -33,28 +33,41 @@
       const submitBtn = form.querySelector('button[type="submit"]');
       submitBtn.disabled = true;
 
+      // Pega os dados do formulário
       const formData = new FormData(form);
       const data = {
-        username: formData.get('username'),
-        password: formData.get('password')
+        username: formData.get('username').trim(),
+        password: formData.get('password').trim()
       };
+
+      // Validação simples (pode melhorar depois)
+      if (!data.username || !data.password) {
+        errorMsg.textContent = 'Preencha todos os campos.';
+        submitBtn.disabled = false;
+        return;
+      }
 
       try {
         const res = await fetch('https://bookflix-jbrq.onrender.com/login', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
-          body: JSON.stringify(data)
+          body: JSON.stringify(data),
         });
 
+        console.log('Status da resposta:', res.status);
+
         const result = await res.json();
+        console.log('Resposta da API:', result);
 
         if (res.ok) {
+          // Se o backend mandar redirect, segue ele; se não, vai pra homepage default
           window.location.href = result.redirect || 'https://eiko919.github.io/bookflix-frontend/site-principal-2.html';
         } else {
-          errorMsg.textContent = result.error || 'Falha ao entrar';
+          errorMsg.textContent = result.error || 'Falha ao entrar. Verifique usuário e senha.';
         }
       } catch (err) {
-        errorMsg.textContent = 'Erro ao conectar ao servidor';
+        console.error('Erro na conexão:', err);
+        errorMsg.textContent = 'Erro ao conectar ao servidor. Tente novamente mais tarde.';
       } finally {
         submitBtn.disabled = false;
       }
