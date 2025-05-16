@@ -61,7 +61,7 @@
 
         if (res.ok) {
           // Se o backend mandar redirect, segue ele; se não, vai pra homepage default
-          window.location.href = result.redirect || 'https://eiko919.github.io/bookflix-frontend/site-principal-2.html';
+          window.location.href = result.redirect || 'https://eiko919.github.io/bookflix-frontend/site-principal-2';
         } else {
           errorMsg.textContent = result.error || 'Falha ao entrar. Verifique usuário e senha.';
         }
