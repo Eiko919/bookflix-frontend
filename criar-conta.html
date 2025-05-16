@@ -44,7 +44,7 @@
       }
 
       try {
-        const res = await fetch('https://bookflix-jbrq.onrender.com', {
+        const res = await fetch('https://bookflix-jbrq.onrender.com/signup', {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body: JSON.stringify({ username, email, password })
