@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="signup-container">
+  <div class="container auth-container">
     <h2>Create Account</h2>
     <form id="signupForm">
       <input type="text" name="username" placeholder="Username" required />
@@ -17,9 +17,7 @@
       <button type="submit">Sign Up</button>
     </form>
     <div class="error" id="errorMsg" aria-live="polite"></div>
-    <div class="login-link">
-      <p>Already have an account? <a href="/login.html">Log In</a></p>
-    </div>
+    <p class="switch-link">Already have an account? <a href="index.html">Log In</a></p>
   </div>
 
   <script>
@@ -55,8 +53,7 @@
         const result = await res.json();
 
         if (res.ok) {
-          // Redirect to login or home after successful signup
-          window.location.href = result.redirect || 'index.html';
+          window.location.href = result.redirect || 'site principal2.html';
         } else {
           errorMsg.textContent = result.error || 'Signup failed';
         }
