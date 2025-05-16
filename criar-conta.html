@@ -53,7 +53,7 @@
         const result = await res.json();
 
         if (res.ok) {
-          window.location.href = result.redirect || 'https://eiko919.github.io/bookflix-frontend/site-principal-2.html';
+          window.location.href = result.redirect || 'https://eiko919.github.io/bookflix-frontend/site-principal-2';
         } else {
           errorMsg.textContent = result.error || 'Signup failed';
         }
