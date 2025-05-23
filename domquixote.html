@@ -5,6 +5,7 @@
   <title>Avaliação do Livro</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    /* Mesmo CSS do original (sem mudanças) */
     body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
@@ -12,8 +13,6 @@
       background-color: #f9f9f9;
       color: #333;
     }
-
-    /* Container for layout */
     .container {
       display: flex;
       justify-content: space-between;
@@ -22,41 +21,33 @@
       max-width: 1200px;
       margin: auto;
     }
-
-    /* Left section - Comments */
     .left {
       flex: 1;
       margin-right: 30px;
     }
-
     .left h2 {
       font-size: 2em;
       margin-bottom: 20px;
       color: #007BFF;
     }
-
     .rating {
       display: flex;
       justify-content: flex-start;
       gap: 5px;
     }
-
     .rating input {
       display: none;
     }
-
     .rating label {
       font-size: 30px;
       color: lightgray;
       cursor: pointer;
       transition: color 0.3s ease;
     }
-
     .rating input:checked ~ label,
     .rating label:hover {
       color: gold;
     }
-
     .review-box textarea {
       width: 100%;
       padding: 15px;
@@ -66,7 +57,6 @@
       resize: vertical;
       box-sizing: border-box;
     }
-
     .button {
       padding: 12px 30px;
       background-color: #007BFF;
@@ -77,12 +67,9 @@
       font-size: 1.1em;
       transition: background-color 0.3s;
     }
-
     .button:hover {
       background-color: #0056b3;
     }
-
-    /* Right section - Image and Description */
     .right {
       flex: 2;
       padding: 20px;
@@ -90,29 +77,24 @@
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     }
-
     .book-image {
       text-align: center;
       margin-bottom: 20px;
     }
-
     .book-image img {
       max-width: 100%;
       border-radius: 8px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     }
-
     .book-description {
       font-size: 1.2em;
       line-height: 1.6;
     }
-
     .book-description h3 {
       font-size: 1.8em;
       margin-bottom: 10px;
       color: #007BFF;
     }
-
     .submitted-review {
       margin-top: 30px;
       border-top: 1px solid #ddd;
@@ -121,10 +103,9 @@
   </style>
 </head>
 <body>
-  </div>
 
   <div class="container">
-    <!-- Left Section: Comments and Reviews -->
+    <!-- Left Section -->
     <div class="left">
       <h2>Avalie o Livro</h2>
 
@@ -145,16 +126,14 @@
       <div class="submitted-review" id="submitted-review"></div>
     </div>
 
-    <!-- Right Section: Image and Description -->
+    <!-- Right Section -->
     <div class="right">
       <div class="book-image">
-        <img src="domquixote.png" alt="Dom Quixote">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Gustave_Dor%C3%A9_-_Don_Quixote_-_The_Adventure_of_the_Windmills.jpg/800px-Gustave_Dor%C3%A9_-_Don_Quixote_-_The_Adventure_of_the_Windmills.jpg" alt="Dom Quixote">
       </div>
       <div class="book-description">
         <h3>Sobre o Livro</h3>
-        <p>Dom Quixote, de Miguel de Cervantes, conta a história de um fidalgo que enlouquece de tanto ler romances de cavalaria e sai pelo mundo como cavaleiro andante. Com seu escudeiro Sancho Pança, vive aventuras absurdas, confundindo a realidade com a fantasia. A obra mistura humor, crítica e reflexão sobre sonhos e realidade.
-
-</p>
+        <p><strong>Dom Quixote</strong>, escrito por Miguel de Cervantes, é considerado uma das maiores obras da literatura mundial. A história segue um fidalgo que, enlouquecido pelos romances de cavalaria, decide tornar-se cavaleiro andante. Ao lado de seu fiel escudeiro Sancho Pança, ele embarca em aventuras cômicas e profundas que questionam a realidade, os sonhos e a loucura.</p>
       </div>
     </div>
   </div>
@@ -178,7 +157,6 @@
         <p><strong>Comentário:</strong> ${comentario}</p>
       `;
 
-      // Reset the form after submission
       document.getElementById("review").value = "";
       document.querySelector('input[name="stars"]:checked').checked = false;
     });
@@ -186,3 +164,4 @@
 
 </body>
 </html>
+
