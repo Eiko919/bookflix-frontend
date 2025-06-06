@@ -97,10 +97,29 @@
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0,0,0,0.2);
 }
+        .top-right-button {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+      transition: background-color 0.3s ease;
+    }
 
+    .top-right-button:hover {
+      background-color: #0056b3;
+    }
     </style>
 </head>
 <body>
+    <button class="top-right-button" onclick="window.location.href='site-principal-2'">Cadastrar</button>
+    
     <div class="search-container">
         <input type="text" id="search" placeholder="Search...">
         <button onclick="searchFunction()">Search</button>
